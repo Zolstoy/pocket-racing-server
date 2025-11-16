@@ -46,3 +46,6 @@ builddir/
 meson-private/
 meson-logs/
 meson-info/
+
+# CodeQL
+_codeql_detected_source_root
