@@ -1,0 +1,8 @@
+CompileFlags:
+    Add: ["-std=c++26",
+    "-I${workspaceFolder}/subprojects/asio-1.36.0/include",
+    "-I${workspaceFolder}/subprojects/websocketpp-0.8.2/include",
+    "-I${workspaceFolder}/subprojects/googletest-1.17.0/googletest/include",
+    "-I${workspaceFolder}/include/pocketracing"
+    ]
+
