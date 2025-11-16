@@ -1,0 +1,43 @@
+name: Build and Test
+
+on:
+  push:
+    branches: main
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'tests/**'
+      - 'meson.build'
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        platform: [
+          ubuntu-latest,
+          windows-latest,
+          macos-latest
+          ]
+
+    runs-on: ${{ matrix.platform }}
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up MSVC
+      if: matrix.platform == 'windows-latest'
+      uses: TheMrMilchmann/setup-msvc-dev@v4
+      with:
+        arch: x64
+
+    - name: Set up GCC
+      if: matrix.platform == 'ubuntu-latest'
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        version: latest
+        platform: x64
+
+    - uses: BSFishy/meson-build@v1.0.3
+      with:
+        action: test
+        meson-version: 1.4.0
